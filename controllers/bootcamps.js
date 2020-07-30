@@ -21,4 +21,4 @@ exports.updateBootcamp = (req, res, next) => {}
 // @desc    Delete bootcamp
 // @route   DELETE /api/v1/bootcamps/:id
 // @access  PRIVATE
-exports.deleteBootcamps = (req, res, next) => {}
+exports.deleteBootcamp = (req, res, next) => {}
