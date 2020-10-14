@@ -63,3 +63,26 @@ exports.addCourse = asyncHandler(async (req, res, next) => {
     data: course
   })
 })
+
+// @desc    Update a course for a Bootcamp
+// @route   GET /api/v1/bootcamps/:bootcampId/courses/:id
+// @access  PRIVATE
+exports.updateCourse = asyncHandler(async (req, res, next) => {
+  req.body.bootcamp = req.params.bootcampId
+
+  const bootcamp = await Bootcamp.findById(req.params.bootcampId)
+
+  if (!bootcamp) {
+    return next(new ErrorResponse(`No bootcamp with the id of ${req.params.bootcampId}`), 404)
+  }
+
+  const course = await Course.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  })
+
+  res.status(200).json({
+    success: true,
+    data: course
+  })
+})
